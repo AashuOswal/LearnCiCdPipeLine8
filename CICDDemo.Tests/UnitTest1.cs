@@ -6,7 +6,7 @@ namespace CICDDemo.Tests
         public void Test1()
         {
 
-            Assert.Equal(1, 1);
+            Assert.Equal(2, 1);
 
         }
     }
