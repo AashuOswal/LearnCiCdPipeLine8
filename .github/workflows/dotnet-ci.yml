@@ -1,0 +1,31 @@
+name: dotnet-ci
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: checkout
+      uses: actions/checkout@v3
+
+    - name: setup-dotnet
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '8.0.x'
+
+    - name: restore
+      run: dotnet restore
+
+    - name: build
+      run: dotnet build --configuration Release --no-restore
+
+    - name: test
+      run: dotnet test --no-build
+
+    - name: publish
+      run: dotnet publish -c Release -o ./publish
